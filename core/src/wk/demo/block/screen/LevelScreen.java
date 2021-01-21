@@ -10,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-
-import javafx.scene.control.Tab;
 import wk.demo.block.Zhed;
 import wk.demo.block.constant.Constant;
 import wk.demo.block.prefab.ItemTableActor;
@@ -28,16 +26,6 @@ public class LevelScreen extends BaseScreen {
     @Override
     public void showView() {
         super.showView();
-//        Image back = new Image(new NinePatch(new Texture("white_squ.png"),20,20,20,20));
-//        back.setColor(Color.BLACK);
-//        back.setSize(300,100);
-//        back.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                super.clicked(event, x, y);
-//                System.out.println("===========>>>>>>>>>>>>>>>");
-//            }
-//        });
         showItem();
     }
 
@@ -45,21 +33,10 @@ public class LevelScreen extends BaseScreen {
         levelItem = new Group();
         addActor(levelItem);
         levelItem.setSize(Constant.width,Constant.height);
-        Image image = new Image(new Texture("white_10x10.png"));
-        image.setColor(Color.RED);
-        image.getColor().a = 0.2F;
-        image.setSize(levelItem.getWidth(),levelItem.getHeight());
-        levelItem.addActor(image);
         Table table = new Table(){{
             for (int i = 0; i < 4; i++) {
                 LevelItem item = new LevelItem(i);
-                item.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        showItemtable();
-                    }
-                });
+                item.addListener(listener);
                 add(item);
                 row();
             }
@@ -83,7 +60,6 @@ public class LevelScreen extends BaseScreen {
 
     private void showItemtable(){
         levelItem.remove();
-        levelItem = null;
         itemTable = new Group();
         int pad = 15;
         itemTable.setSize(Constant.width,Constant.height);
@@ -95,6 +71,7 @@ public class LevelScreen extends BaseScreen {
                 if (i%4 == 0){
                     row();
                 }
+                itemTable.addListener(levelListener);
             }
             pack();
         }};
@@ -120,4 +97,20 @@ public class LevelScreen extends BaseScreen {
     public void loadData() {
         super.loadData();
     }
+
+    private ClickListener listener = new ClickListener(){
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            super.clicked(event, x, y);
+            showItemtable();
+        }
+    };
+
+    private ClickListener levelListener = new ClickListener(){
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            super.clicked(event, x, y);
+            game.setScreen(new GameScreen(game));
+        }
+    };
 }

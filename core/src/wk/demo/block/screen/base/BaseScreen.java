@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import wk.demo.block.Zhed;
@@ -18,6 +19,7 @@ public class BaseScreen implements Screen {
 
     @Override
     public void show() {
+        game.clearInputMultiplexer();
         stage = new Stage(game.getViewport(),game.getBatch());
         game.addInputProcessor(stage);
         Gdx.input.setInputProcessor(game.getInputMultiplexer());
@@ -77,5 +79,9 @@ public class BaseScreen implements Screen {
 
     protected void nextScreen(BaseScreen screen){
         game.setScreen(screen);
+    }
+
+    protected void addListener(EventListener listener){
+        stage.addListener(listener);
     }
 }

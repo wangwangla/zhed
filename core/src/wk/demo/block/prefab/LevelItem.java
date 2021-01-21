@@ -18,20 +18,7 @@ public class LevelItem extends Group {
         addActor(image);
         image.setWidth(Constant.width - 20);
         setSize(image.getWidth(),image.getHeight());
-        image.setColor(Color.BLACK);
-        addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                setScale(0.8F);
-                return super.touchDown(event, x, y, pointer, button);
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                setScale(1);
-            }
-        });
+        image.setColor(Color.valueOf("CCCCCCFF"));
     }
 
     public int getNum() {

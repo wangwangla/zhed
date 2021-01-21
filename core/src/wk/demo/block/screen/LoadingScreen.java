@@ -32,15 +32,6 @@ public class LoadingScreen extends BaseScreen {
         Image image = new Image(new Texture("logo.png"));
         addActor(image);
         image.setPosition(Constant.width/2,Constant.height*0.85F, Align.center);
-//        ProGress proGress = new ProGress(
-//                new TextureRegion(new Texture("pro_cir.png")),
-//                new TextureRegion(new Texture("white_cir.png")),
-//                        446F);
-//        proGress.setColor(Color.BLACK);
-//        proGress.setPercentage(100);
-//        addActor(proGress);
-//        proGress.setPosition(Constant.width/2,Constant.height/2,Align.center);
-
         Table table = new Table(){{
             for (int i = 0; i < 3; i++) {
                 ButtonActor actor = new ButtonActor(i);

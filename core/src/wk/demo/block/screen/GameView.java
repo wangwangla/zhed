@@ -6,13 +6,26 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import wk.demo.block.constant.Constant;
 import wk.demo.block.prefab.TempBlack;
 
 public class GameView extends Group {
     int arr[][];
 
     public void show(){
-        setSize(720,200);
+        setSize(Constant.width,Constant.height);
+
+
+
+
+
+
+
+
+
+
+
+
         int srcx = 4;
         int srcy = 4;
         int targetX = 5;

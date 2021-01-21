@@ -7,11 +7,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ItemTableActor extends Group {
     private Image image;
+    private int levelId;
     public ItemTableActor(int index){
+        this.levelId = index;
         image = new Image(new Texture("menu_bg.png"));
         addActor(image);
         image.setColor(Color.valueOf("999999FF"));
         image.setSize(100,100);
         setSize(image.getWidth(),image.getHeight());
+    }
+
+    public int getLevelId() {
+        return levelId;
     }
 }

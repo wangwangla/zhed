@@ -77,4 +77,8 @@ public class Zhed extends Game {
     public InputMultiplexer getInputMultiplexer() {
         return inputMultiplexer;
     }
+
+    public void clearInputMultiplexer(){
+        inputMultiplexer.clear();
+    }
 }
