@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -28,45 +29,36 @@ public class LevelScreen extends BaseScreen {
     @Override
     public void showView() {
         super.showView();
-//        Image back = new Image(new NinePatch(new Texture("white_squ.png"),20,20,20,20));
-//        back.setColor(Color.BLACK);
-//        back.setSize(300,100);
-//        back.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                super.clicked(event, x, y);
-//                System.out.println("===========>>>>>>>>>>>>>>>");
-//            }
-//        });
         showItem();
     }
 
     public void showItem(){
+        if (findActor("levelItem")!=null){
+            findActor("levelItem").setVisible(true);
+        }
         levelItem = new Group();
+        levelItem.setName("levelItem");
         addActor(levelItem);
         levelItem.setSize(Constant.width,Constant.height);
+        levelItem.setTouchable(Touchable.childrenOnly);
         Image image = new Image(new Texture("white_10x10.png"));
         image.setColor(Color.RED);
         image.getColor().a = 0.2F;
         image.setSize(levelItem.getWidth(),levelItem.getHeight());
         levelItem.addActor(image);
-        Table table = new Table(){{
-            for (int i = 0; i < 4; i++) {
-                LevelItem item = new LevelItem(i);
-                item.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        showItemtable();
-                    }
-                });
-                add(item);
-                row();
-            }
-            pack();
-        }};
-        levelItem.addActor(table);
-        table.setPosition(Constant.width/2,Constant.height - 70, Align.top);
+
+        for (int i = 0; i < 4; i++) {
+            LevelItem item = new LevelItem(i);
+            item.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    showItemtable();
+                }
+            });
+            levelItem.addActor(item);
+            item.setY(i*300);
+        }
         Image back = new Image(new NinePatch(new Texture("white_squ.png"),20,20,20,20));
         levelItem.addActor(back);
         back.setColor(Color.BLACK);
@@ -76,6 +68,7 @@ public class LevelScreen extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+
                 nextScreen(new LoadingScreen(game));
             }
         });
@@ -83,8 +76,9 @@ public class LevelScreen extends BaseScreen {
 
     private void showItemtable(){
         levelItem.remove();
-        levelItem = null;
+        levelItem.setVisible(false);
         itemTable = new Group();
+        itemTable.setTouchable(Touchable.childrenOnly);
         int pad = 15;
         itemTable.setSize(Constant.width,Constant.height);
         addActor(itemTable);
@@ -111,7 +105,7 @@ public class LevelScreen extends BaseScreen {
                 super.clicked(event, x, y);
                 itemTable.remove();
                 showItem();
-                itemTable = null;
+                itemTable.setVisible(false);
             }
         });
     }

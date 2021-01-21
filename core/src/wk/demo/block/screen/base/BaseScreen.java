@@ -18,6 +18,7 @@ public class BaseScreen implements Screen {
 
     @Override
     public void show() {
+        game.clearInputMultiplexer();
         stage = new Stage(game.getViewport(),game.getBatch());
         game.addInputProcessor(stage);
         Gdx.input.setInputProcessor(game.getInputMultiplexer());
@@ -77,5 +78,6 @@ public class BaseScreen implements Screen {
 
     protected void nextScreen(BaseScreen screen){
         game.setScreen(screen);
+        dispose();
     }
 }

@@ -7,13 +7,10 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.CpuPolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.CpuSpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
 import wk.demo.block.constant.Constant;
-import wk.demo.block.screen.LevelScreen;
 import wk.demo.block.screen.LoadingScreen;
 
 
@@ -35,10 +32,8 @@ public class Zhed extends Game {
     @Override
     public void render() {
         Gdx.gl.glClearColor(0.94F, 0.94F, 0.94F, 1);
-//        Gdx.gl.glClearColor(0F, 0F, 0F, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         super.render();
-
     }
 
     public void pause () {
@@ -72,6 +67,10 @@ public class Zhed extends Game {
 
     public void addInputProcessor(InputProcessor processor){
         inputMultiplexer.addProcessor(processor);
+    }
+
+    public void clearInputMultiplexer(){
+        inputMultiplexer.clear();
     }
 
     public InputMultiplexer getInputMultiplexer() {

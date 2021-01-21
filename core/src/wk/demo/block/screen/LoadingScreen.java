@@ -41,15 +41,12 @@ public class LoadingScreen extends BaseScreen {
 //        addActor(proGress);
 //        proGress.setPosition(Constant.width/2,Constant.height/2,Align.center);
 
-        Table table = new Table(){{
-            for (int i = 0; i < 3; i++) {
-                ButtonActor actor = new ButtonActor(i);
-                add(actor).pad(30);
-            }
-            pack();
-        }};
-        table.setPosition(Constant.width/2,Constant.height*0.15F,Align.center);
-        addActor(table);
+
+        for (int i = 0; i < 3; i++) {
+            ButtonActor actor = new ButtonActor(i);
+            actor.setPosition(10,10+i*100);
+            addActor(actor);
+        }
         initListener();
     }
 

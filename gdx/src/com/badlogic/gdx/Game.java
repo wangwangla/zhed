@@ -68,5 +68,4 @@ public abstract class Game implements ApplicationListener {
 		return screen;
 	}
 
-
 }
