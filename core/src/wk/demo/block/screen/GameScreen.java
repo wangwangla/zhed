@@ -64,32 +64,34 @@ public class GameScreen extends BaseScreen {
                 block = bloacks[i][y];
                 if (block.getNum() == 0) {
                     count++;
-
+                    block.tip();
                 }
                 if (count >= num)break;
             }
             count = 0;
             for (int i = x;i>=0;i--){
-                if (arr[i][y] == 0) {
+                block = bloacks[i][y];
+                if (block.getNum() == 0) {
                     count++;
-                    show(i,y);
+                    block.tip();
                 }
                 if (count >= num)break;
             }
             count = 0;
             for (int i = x;i>=0;i--){
-                if (arr[x][i] == 0) {
+                block = bloacks[x][i];
+                if (block.getNum() == 0) {
                     count++;
-                    show(x,i);
+                    block.tip();
                 }
                 if (count >= num)break;
             }
-
             count = 0;
             for (int i = x;i<10;i++){
-                if (arr[x][i] == 0) {
+                block = bloacks[x][i];
+                if (block.getNum() == 0) {
                     count++;
-                    show(x,i);
+                    block.tip();
                 }
                 if (count >= num)break;
             }
