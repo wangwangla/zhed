@@ -15,9 +15,7 @@ import com.badlogic.gdx.utils.Align;
 import wk.demo.block.Zhed;
 import wk.demo.block.constant.Constant;
 import wk.demo.block.prefab.ButtonActor;
-import wk.demo.block.prefab.LevelItem;
 import wk.demo.block.screen.base.BaseScreen;
-import wk.demo.block.utils.ProGress;
 
 public class LoadingScreen extends BaseScreen {
 

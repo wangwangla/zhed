@@ -24,7 +24,6 @@ public class Zhed extends Game {
     @Override
     public void create() {
         batch = new CpuSpriteBatch();
-
         viewport = new ExtendViewport(720,1280);
         resize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         Constant.assetManager = new AssetManager();
