@@ -1,9 +1,7 @@
 package wk.demo.block.screen;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
+import com.badlogic.gdx.utils.Array;
 import wk.demo.block.Zhed;
 import wk.demo.block.prefab.TempBlock;
 import wk.demo.block.screen.base.BaseScreen;
@@ -14,6 +12,9 @@ import wk.demo.block.screen.base.BaseScreen;
  * 无论之前的操作是对是错，都销毁，然后重新开始
  *
  * 它是会记住已经提示的步骤，无论后来的是对是错。都保留
+ *
+ *
+ * 点击之后，会判断手指按下的方向，向选中的方向作用。
  */
 public class GameScreen extends BaseScreen {
     private int arr[][];
@@ -41,12 +42,20 @@ public class GameScreen extends BaseScreen {
     }
 
     public interface BlackListener{
-        public void blackOnClick(int x,int y,int num);
+        void blackOnClick(int x,int y,int num);
     }
+
+    private Array<TempBlock> tempBlocks = new Array<>();
 
     private BlackListener listener = new BlackListener() {
         @Override
         public void blackOnClick(int x,int y,int num) {
+            if (tempBlocks.size>0){
+                for (TempBlock tempBlock : tempBlocks) {
+                    tempBlock.untip();
+                }
+            }
+            tempBlocks.clear();
             //找到上下左右可以走的位置
             TempBlock block;
             //上

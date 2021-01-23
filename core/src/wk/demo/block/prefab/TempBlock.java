@@ -67,4 +67,8 @@ public class TempBlock extends Group {
 
     public void tip() {
     }
+
+    public void untip(){
+
+    }
 }
