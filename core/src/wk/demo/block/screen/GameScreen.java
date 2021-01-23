@@ -8,6 +8,13 @@ import wk.demo.block.Zhed;
 import wk.demo.block.prefab.TempBlock;
 import wk.demo.block.screen.base.BaseScreen;
 
+/**
+ * 提示
+ *
+ * 无论之前的操作是对是错，都销毁，然后重新开始
+ *
+ * 它是会记住已经提示的步骤，无论后来的是对是错。都保留
+ */
 public class GameScreen extends BaseScreen {
     private int arr[][];
     private TempBlock[][] bloacks;
